@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (FindAnyObjectByType<Enemy>() == null && !isBoss)
+        /*if (FindAnyObjectByType<Enemy>() == null && !isBoss)
         {
             GameComplete();
             gameCompleted = true;
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         else if (isBoss && (FindAnyObjectByType<MiniBoss>() != null || FindAnyObjectByType<Enemy>() != null))
         {
             gameCompleted = false;
-        }
+        }*/
     }
 
     public void GameOver()
