@@ -24,6 +24,7 @@ public class table : MonoBehaviour
             FindAnyObjectByType<playerMovement>().canMove = false;
             storeMenu.SetActive(true);
             Debug.Log("You activated the inventory menu");
+            Time.timeScale = 0f;
         }
     }
 }

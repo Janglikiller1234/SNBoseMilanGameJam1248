@@ -29,5 +29,7 @@ public class StoreElement : MonoBehaviour
         {
             errorMessage.SetActive(true);
         }
+        int a = i;
+        Debug.Log("The current selected item is " + a);
     }
 }

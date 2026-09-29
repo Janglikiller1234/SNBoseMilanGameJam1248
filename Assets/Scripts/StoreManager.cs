@@ -20,6 +20,7 @@ public class StoreManager : MonoBehaviour
 
     public void Back()
     {
+        Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         FindAnyObjectByType<playerMovement>().canMove = true;
         FindAnyObjectByType<table>().storeMenu.SetActive(false);
