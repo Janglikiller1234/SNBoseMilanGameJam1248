@@ -8,7 +8,6 @@ public class end_trigger : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             playerMovement move = other.GetComponent<playerMovement>();
-            move.inversion_probability = 0;
         }
     }
 }

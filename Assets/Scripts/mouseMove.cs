@@ -17,15 +17,18 @@ public class mouseMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        player = FindAnyObjectByType<PlayerHealth>().gameObject.transform;
-        MouseX = Input.GetAxis("Mouse X") * MouseSensitivity * Time.deltaTime;
-        MouseY = Input.GetAxis("Mouse Y")* MouseSensitivity * Time.deltaTime;
+        if (FindAnyObjectByType<playerMovement>().canMove == true)
+        {
+            player = FindAnyObjectByType<PlayerHealth>().gameObject.transform;
+            MouseX = Input.GetAxis("Mouse X") * MouseSensitivity * Time.deltaTime;
+            MouseY = Input.GetAxis("Mouse Y") * MouseSensitivity * Time.deltaTime;
 
-        Xrotation -= MouseY;
-        Xrotation = Math.Clamp(Xrotation,-90f,90f);
+            Xrotation -= MouseY;
+            Xrotation = Math.Clamp(Xrotation, -90f, 90f);
 
-        transform.localRotation = Quaternion.Euler(Xrotation,0,0);
+            transform.localRotation = Quaternion.Euler(Xrotation, 0, 0);
 
-        player.Rotate(Vector3.up*MouseX);
+            player.Rotate(Vector3.up * MouseX);
+        }
     }
 }

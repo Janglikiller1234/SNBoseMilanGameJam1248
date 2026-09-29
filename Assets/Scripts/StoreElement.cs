@@ -1,0 +1,33 @@
+using UnityEngine;
+
+public class StoreElement : MonoBehaviour
+{
+    public int _cost;
+    public GameObject errorMessage;
+    public MoneyManage playerManager;
+    public int _playerMoney;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        playerManager.playerMoney = _playerMoney;  
+    }
+
+    public void PurchaseItem(int i)
+    {
+        if (_playerMoney >= _cost)
+        {
+
+        }
+        else
+        {
+            errorMessage.SetActive(true);
+        }
+    }
+}
