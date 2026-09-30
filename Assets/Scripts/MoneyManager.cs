@@ -11,9 +11,10 @@ public class MoneyManage : MonoBehaviour
     public int currentReward;
     public bool timerRunning = false;
 
-    //Thy UI hath Arrived
+    //Thy UI hath Arrived(Maine AI ka upyog nhi kiya :D)
     public Slider timeSlider;
     public Text timeRemainingText;
+    public Text moneyText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,6 +32,8 @@ public class MoneyManage : MonoBehaviour
             timeRemainingText.text = timeRemaining.ToString("00");
             timeSlider.value = timeRemaining;
         }
+
+        moneyText.text = moneyText.ToString();
     }
 
     void DecayReward()
