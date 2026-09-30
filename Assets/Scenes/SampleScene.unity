@@ -1012,8 +1012,8 @@ MonoBehaviour:
   playerMoney: 0
   maxTime: 90
   timeRemaining: 0
-  baseReward: 0
-  maxReward: 0
+  baseReward: 100
+  rewardFactor: 500
   currentReward: 0
   timerRunning: 1
   timeSlider: {fileID: 9849444}
@@ -1063,6 +1063,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 603016966}
+    - target: {fileID: 4741259556951485911, guid: 664c0328ba9858941babea63f8e72b75, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7740644040603649525, guid: 664c0328ba9858941babea63f8e72b75, type: 3}
       propertyPath: m_LocalPosition.x
       value: 133.98

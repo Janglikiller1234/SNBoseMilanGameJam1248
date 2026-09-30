@@ -3,12 +3,13 @@ using UnityEngine.UI;
 
 public class MoneyManage : MonoBehaviour
 {
-    public int playerMoney;
-    public int maxTime = 90;
+    public int playerMoney=0;
+    public float maxTime = 90;
     public float timeRemaining;
     public int baseReward;
-    public int maxReward;
-    public int currentReward;
+    public int rewardFactor;
+    //public int maxReward;
+    public float currentReward;
     public bool timerRunning = false;
 
     //Thy UI hath Arrived(Maine AI ka upyog nhi kiya :D)
@@ -33,12 +34,13 @@ public class MoneyManage : MonoBehaviour
             timeSlider.value = timeRemaining;
         }
 
-        moneyText.text = moneyText.ToString();
+        moneyText.text = "Money : $" + playerMoney.ToString();
+        DecayReward();
     }
 
     void DecayReward()
     {
-        if (timeRemaining >= (maxTime * 0.9))
+        /*if (timeRemaining >= (maxTime * 0.9))
         {
             currentReward = maxReward;
         }
@@ -65,6 +67,11 @@ public class MoneyManage : MonoBehaviour
         else
         {
             currentReward = baseReward;
-        }
+        }*/
+
+        //float timePassed = maxTime - timeRemaining;
+        float ratioTime = ((timeRemaining)/ maxTime);
+        float a = ratioTime * ratioTime;
+        currentReward = baseReward + ((a*a) * rewardFactor);
     }
 }
