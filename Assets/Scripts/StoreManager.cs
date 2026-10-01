@@ -3,7 +3,7 @@ using UnityEngine;
 public class StoreManager : MonoBehaviour
 {
     public GameObject errorMessage;
-    public MoneyManage moneyManager;
+    public MoneyManager moneyManager;
     public int _playerMoney;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

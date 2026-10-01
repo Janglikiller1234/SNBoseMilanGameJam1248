@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MoneyManage : MonoBehaviour
+public class MoneyManager : MonoBehaviour
 {
-    public int playerMoney=0;
+    public float playerMoney=0;
     public float maxTime = 90;
     public float timeRemaining;
     public int baseReward;
@@ -17,9 +17,12 @@ public class MoneyManage : MonoBehaviour
     public Text timeRemainingText;
     public Text moneyText;
 
+    int a = 0;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        playerMoney = PlayerPrefs.GetFloat("money");
         timeRemaining = maxTime;
         timeSlider.maxValue = maxTime;
     }
@@ -34,7 +37,7 @@ public class MoneyManage : MonoBehaviour
             timeSlider.value = timeRemaining;
         }
 
-        moneyText.text = "Money : $" + playerMoney.ToString();
+        moneyText.text = "Money : $" + Mathf.FloorToInt(playerMoney).ToString();
         DecayReward();
     }
 
@@ -70,8 +73,19 @@ public class MoneyManage : MonoBehaviour
         }*/
 
         //float timePassed = maxTime - timeRemaining;
-        float ratioTime = ((timeRemaining)/ maxTime);
-        float a = ratioTime * ratioTime;
-        currentReward = baseReward + ((a*a) * rewardFactor);
+        if (timerRunning)
+        {
+            float ratioTime = ((timeRemaining) / maxTime);
+            float a = ratioTime * ratioTime;
+            currentReward = baseReward + ((a * a) * rewardFactor);
+        }
+        else
+        {
+            if (a == 0)
+            {
+                playerMoney = PlayerPrefs.GetFloat("money") + currentReward;
+                a++;
+            }    
+        }
     }
 }

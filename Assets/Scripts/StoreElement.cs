@@ -4,7 +4,7 @@ public class StoreElement : MonoBehaviour
 {
     public int _cost;
     public GameObject errorMessage;
-    public MoneyManage playerManager;
+    public MoneyManager playerManager;
     public int _playerMoney;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
