@@ -16,10 +16,12 @@ public class GameManager : MonoBehaviour
     public bool theEnd = false;
     public bool theThirdLevel = false;
 
+    public Text currentLevelText;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame
@@ -45,6 +47,16 @@ public class GameManager : MonoBehaviour
         {
             gameCompleted = false;
         }*/
+        if (FindAnyObjectByType<Enemy>() == null)
+        {
+            GameComplete();
+            gameCompleted = true;
+        }
+        else
+        {
+            string levelName = SceneManager.GetActiveScene().name;
+            currentLevelText.text = levelName;
+        }
     }
 
     public void GameOver()
@@ -55,13 +67,15 @@ public class GameManager : MonoBehaviour
         {
             Destroy(FindAnyObjectByType<playerMovement>().gameObject);
         }
+        GetComponent<MoneyManager>().timerRunning = false;
         Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0f;
     }
 
     public void GameComplete()
     {
-        if (!isBoss)
-        {
+        /*if (!isBoss)
+        {*/
             levelCompleteScreen.SetActive(true);
             secondCam.SetActive(true);
             gameCompleted = true;
@@ -69,9 +83,11 @@ public class GameManager : MonoBehaviour
             {
                 Destroy(FindAnyObjectByType<playerMovement>().gameObject);
             }
-            Cursor.lockState = CursorLockMode.None;
-
-        }
+        GetComponent<MoneyManager>().timerRunning = false;
+        PlayerPrefs.SetFloat("money", GetComponent<MoneyManager>().playerMoney);
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0f;
+        /*}
         else
         {
             gameCompleteScreen.SetActive(true);
@@ -82,7 +98,7 @@ public class GameManager : MonoBehaviour
                 Destroy(FindAnyObjectByType<playerMovement>().gameObject);
             }
             Cursor.lockState = CursorLockMode.None;
-        }
+        }*/
     }
 
     public void Restart()

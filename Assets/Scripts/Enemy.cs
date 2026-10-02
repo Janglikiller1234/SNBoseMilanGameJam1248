@@ -27,8 +27,8 @@ public class Enemy : MonoBehaviour
     public float projectile_speedX;
     public float projectile_speedY;
 
-    public float thickify_probability;
-    public float thicknessFactor;
+    //public float thickify_probability;
+    //public float thicknessFactor;
 
     public Transform Shooter;
     public AudioClip hurt_sound;
@@ -39,6 +39,9 @@ public class Enemy : MonoBehaviour
     private float health;
     public Slider healthBar;
     //sprivate bool hasRespawned = false;
+
+    public int defensePercentage;
+    public int attackPercentage;
 
     void Start()
     {
@@ -95,12 +98,13 @@ public class Enemy : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            GameObject bullet = Instantiate(projectile, Shooter.position,transform.rotation);
-            Rigidbody rb = bullet.GetComponent<Rigidbody>();
-            if(UnityEngine.Random.Range(0f,1f) < thickify_probability)
+            GameObject _bullet = Instantiate(projectile, Shooter.position,transform.rotation);
+            Rigidbody rb = _bullet.GetComponent<Rigidbody>();
+            _bullet.GetComponent<bullet>().defensePercentage = defensePercentage;
+            /*if(UnityEngine.Random.Range(0f,1f) < thickify_probability)
             {
                 bullet.transform.localScale += new Vector3(thicknessFactor,0F,0f);
-            }
+            }*/
 
             rb.AddForce(transform.forward * projectile_speedX + transform.right*projectile_speedY, ForceMode.Impulse);
 
@@ -115,7 +119,7 @@ public class Enemy : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        health -= (damage + ((damage*attackPercentage)/100));
         SFXManager.instance.PlaySFXClip(hurt_sound,transform,1f);
         if (health <= 0) {
             //Invoke(nameof(DestroyEnemy), 0.5f);

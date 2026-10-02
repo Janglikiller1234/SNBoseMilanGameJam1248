@@ -52,6 +52,11 @@ public class PlayerHealth : MonoBehaviour
         health = health + amt;
     }
 
+    public void HealPercentage(int amt)
+    {
+        health += (int)((health*amt)/100);
+    }
+
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
