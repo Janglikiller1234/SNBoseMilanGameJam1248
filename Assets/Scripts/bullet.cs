@@ -4,12 +4,14 @@ using UnityEngine;
 public class bullet : MonoBehaviour
 {
     public int bulletDamage = 10;
+    public int defensePercentage = 0;
 
     void OnCollisionEnter(Collision collision)
     {
         PlayerHealth ph = collision.gameObject.GetComponent<PlayerHealth>();
         if(ph != null){
-            ph.TakeDamage(bulletDamage);
+            float totalDamage = bulletDamage - ((bulletDamage*defensePercentage)/100);
+            ph.TakeDamage(Mathf.RoundToInt(totalDamage));
         }
         Rigidbody rb = gameObject.GetComponent<Rigidbody>();
         rb.useGravity = true;

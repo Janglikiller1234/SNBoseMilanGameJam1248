@@ -40,6 +40,9 @@ public class Enemy : MonoBehaviour
     public Slider healthBar;
     //sprivate bool hasRespawned = false;
 
+    public int defensePercentage;
+    public int attackPercentage;
+
     void Start()
     {
         health = health_max;
@@ -95,8 +98,9 @@ public class Enemy : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            GameObject bullet = Instantiate(projectile, Shooter.position,transform.rotation);
-            Rigidbody rb = bullet.GetComponent<Rigidbody>();
+            GameObject _bullet = Instantiate(projectile, Shooter.position,transform.rotation);
+            Rigidbody rb = _bullet.GetComponent<Rigidbody>();
+            _bullet.GetComponent<bullet>().defensePercentage = defensePercentage;
             /*if(UnityEngine.Random.Range(0f,1f) < thickify_probability)
             {
                 bullet.transform.localScale += new Vector3(thicknessFactor,0F,0f);
@@ -115,7 +119,7 @@ public class Enemy : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        health -= (damage + ((damage*attackPercentage)/100));
         SFXManager.instance.PlaySFXClip(hurt_sound,transform,1f);
         if (health <= 0) {
             //Invoke(nameof(DestroyEnemy), 0.5f);
